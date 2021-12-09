@@ -6,16 +6,18 @@ import (
     "io/ioutil"
     "net/http"
 	"github.com/gorilla/mux"
-     // "com.pos.api/app/models"
+    "com.pos.api/app/models"
 )
 
-type Article struct {
-    Id      string `json:"Id"`
-    Title   string `json:"Title"`
-    Desc    string `json:"desc"`
-    Content string `json:"content"`
-}
+// type Article struct {
+//     Id      string `json:"Id"`
+//     Title   string `json:"Title"`
+//     Desc    string `json:"desc"`
+//     Content string `json:"content"`
+// }
 
+//load struct model from another package
+type Article = models.Article
 var Articles []Article
 
 func HomePage(w http.ResponseWriter, r *http.Request) {
