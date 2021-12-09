@@ -6,10 +6,9 @@ import (
     "io/ioutil"
     "net/http"
 	"github.com/gorilla/mux"
-    // "com.pos.api/app/models"
+     // "com.pos.api/app/models"
 )
 
-// // Article - Our struct for all articles
 type Article struct {
     Id      string `json:"Id"`
     Title   string `json:"Title"`
@@ -30,7 +29,24 @@ func ReturnAllArticles(w http.ResponseWriter, r *http.Request) {
 }
 
 func ReturnSingleArticle(w http.ResponseWriter, r *http.Request) {
+    fmt.Println(r)
+    fmt.Println(r.Header["User-Agent"])
+    fmt.Println(r.RequestURI)
+
+    //get raw query string
+    keys := r.URL.RawQuery
+    
+    fmt.Println(keys)
+   
+    //get looping query string
+    values := r.URL.Query()
+    for k, v := range values {
+        fmt.Println(k, " => ", v)
+    }
+
+    //get params from url /{id} query string
     vars := mux.Vars(r)
+    fmt.Println(vars)
     key := vars["id"]
 
     for _, article := range Articles {
